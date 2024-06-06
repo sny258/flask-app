@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 100px; /* Add margin bottom to create space */
+}
+.destination {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.destination img {
+  max-width: 300px;
+  margin-left: 20px;
+  border-radius: 5px;
+}
+.destination .text {
+  flex: 1;
+}
+.destination .text h2 {
+  margin: 0;
+}
+.destination .text p {
+  margin-top: 10px;
+}
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.logout-button form {
+  display: inline;
+}
+.logout-button button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.logout-button button:hover {
+  background-color: #d32f2f;
+}
