@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="static/itinerary.css">
 </head>
 <body>
+    <!-- Navbar with Dropdown Menu -->
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('welcome') }}">Welcome Page</a>
+                <a href="{{ url_for('login') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+    
     <h1>Leh Ladakh Itinerary 🏔️</h1>
     <!-- Day 1 -->
     <div class="point-container">

@@ -7,38 +7,42 @@
     <link rel="stylesheet" href="static/welcome.css">
 </head>
 <body>
-    <div class="logout-button">
-        <form method="post" action="{{ url_for('logout') }}">
-            <button type="submit">Logout</button>
-        </form>
+    <!-- Navbar with Dropdown Menu -->
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('login') }}">Logout</a>
+            </div>
+        </div>
     </div>
-    <div class="container">
-        <h1>Where would you like to go ? 😊✈️</h1>
-        <div class="destination">
-            <div class="text">
-                <h2><strong>Leh</strong>: Explore the breathtaking landscapes of Ladakh.</h2>
-                <p>Leh is known for its stunning mountain scenery, Buddhist monasteries, and adventure activities like trekking and mountaineering.</p>
-            </div>
-            <img src="https://images.unsplash.com/photo-1566323124508-c708b5524d61?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Leh">
-            <a href="/leh_itinerary" class="explore-button">Explore</a>
+
+    <h1>Where would you like to go ? 😊✈️</h1>
+    <div class="destination">
+        <div class="text">
+            <h2><strong>Leh</strong>: Explore the breathtaking landscapes of Ladakh.</h2>
+            <p>Leh is known for its stunning mountain scenery, Buddhist monasteries, and adventure activities like trekking and mountaineering.</p>
         </div>
-        <div class="destination">
-            <div class="text">
-                <h2><strong>Manali</strong>: Experience the charm of Himachal Pradesh's hill station.</h2>
-                <p>Manali is a picturesque hill station nestled in the mountains of Himachal Pradesh, offering adventure activities, lush greenery, and scenic beauty throughout the year.</p>
-            </div>
-            <img id="manali-img" src="https://images.unsplash.com/photo-1594102552386-793e5a27ad10?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Manali">
-            <a href="/manali_itinerary" class="explore-button">Explore</a>
-        </div>
-        <div class="destination">
-            <div class="text">
-                <h2><strong>Kedarnath</strong>: Seek blessings at one of the holiest pilgrimage sites.</h2>
-                <p>Kedarnath is a sacred town in the Himalayas, known for its ancient Kedarnath Temple dedicated to Lord Shiva and surrounded by breathtaking mountain views.</p>
-            </div>
-            <img src="https://images.unsplash.com/photo-1623952146070-f13fc902f769?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kedarnath">
-            <a href="/kedarnath_itinerary" class="explore-button">Explore</a>
-        </div>
-        <!-- Add more destinations as needed -->
+        <img src="https://images.unsplash.com/photo-1566323124508-c708b5524d61?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Leh">
+        <a href="/leh_itinerary" class="explore-button">Explore</a>
     </div>
+    <div class="destination">
+        <div class="text">
+            <h2><strong>Manali</strong>: Experience the charm of Himachal Pradesh's hill station.</h2>
+            <p>Manali is a picturesque hill station nestled in the mountains of Himachal Pradesh, offering adventure activities, lush greenery, and scenic beauty throughout the year.</p>
+        </div>
+        <img id="manali-img" src="https://images.unsplash.com/photo-1594102552386-793e5a27ad10?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Manali">
+        <a href="/manali_itinerary" class="explore-button">Explore</a>
+    </div>
+    <div class="destination">
+        <div class="text">
+            <h2><strong>Kedarnath</strong>: Seek blessings at one of the holiest pilgrimage sites.</h2>
+            <p>Kedarnath is a sacred town in the Himalayas, known for its ancient Kedarnath Temple dedicated to Lord Shiva and surrounded by breathtaking mountain views.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1623952146070-f13fc902f769?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kedarnath">
+        <a href="/kedarnath_itinerary" class="explore-button">Explore</a>
+    </div>
+    <!-- Add more destinations as needed -->
+
 </body>
 </html>
