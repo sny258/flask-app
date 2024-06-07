@@ -87,13 +87,6 @@ def leh_itinerary():
         return render_template('leh_itinerary.html', username=session['username'])
     else:
         return redirect(url_for('login'))
-
-@app.route('/kasol_itinerary')
-def kasol_itinerary():
-    if 'username' in session:
-        return render_template('kasol_itinerary.html', username=session['username'])
-    else:
-        return redirect(url_for('login'))
     
 @app.route('/kedarnath_itinerary')
 def kedarnath_itinerary():
