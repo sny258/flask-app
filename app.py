@@ -80,5 +80,35 @@ def logout():
     return redirect(url_for('login'))
 
 
+#routes for itenary
+@app.route('/leh_itinerary')
+def leh_itinerary():
+    if 'username' in session:
+        return render_template('leh_itinerary.html', username=session['username'])
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/kasol_itinerary')
+def kasol_itinerary():
+    if 'username' in session:
+        return render_template('kasol_itinerary.html', username=session['username'])
+    else:
+        return redirect(url_for('login'))
+    
+@app.route('/kedarnath_itinerary')
+def kedarnath_itinerary():
+    if 'username' in session:
+        return render_template('kedarnath_itinerary.html', username=session['username'])
+    else:
+        return redirect(url_for('login'))
+    
+@app.route('/manali_itinerary')
+def manali_itinerary():
+    if 'username' in session:
+        return render_template('manali_itinerary.html', username=session['username'])
+    else:
+        return redirect(url_for('login'))
+    
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

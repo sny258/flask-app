@@ -1,0 +1,29 @@
+/* itinerary.css */
+
+/* Center the page heading */
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Move the paragraph a bit to the right */
+p {
+    margin-left: 100px;
+    font-weight: bold;
+}
+
+
+.point-container {
+    display: flex;
+    align-items: center; /* Align items to the start of the container */
+    justify-content: space-between; /* This will push the items to the edges of the container */
+    gap: 20px; /* Optional: Adds some space between the text and the image */
+    margin-left: 120px; /* Adjust as needed */
+    margin-bottom: 20px; /* Adds space below each point-container */
+}
+
+.point-container img {
+    max-width: 300px; /* Adjust as needed */
+    height: auto; /* This will maintain the aspect ratio of the image */
+    margin-right: 220px; /* Adjust as needed */
+}

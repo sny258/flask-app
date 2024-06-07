@@ -3,19 +3,27 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .container {
   max-width: 800px;
   margin: 50px auto;
   padding: 0 20px;
+  margin-left: 100px;
 }
+
 h1 {
   text-align: center;
   margin-bottom: 100px; /* Add margin bottom to create space */
+  margin-left: 110px;
 }
+
 .destination {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  margin-left: 20px;
+  width: 120%;
 }
 .destination img {
   max-width: 300px;
@@ -31,10 +39,21 @@ h1 {
 .destination .text p {
   margin-top: 10px;
 }
+
+
+#kasol-img, #manali-img {
+  height: 300px; /* Adjust this height as needed */
+  width: 400px;
+  object-fit: cover;
+}
+
+
 .logout-button {
   position: absolute;
   top: 20px;
   right: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 .logout-button form {
   display: inline;
@@ -50,4 +69,19 @@ h1 {
 }
 .logout-button button:hover {
   background-color: #d32f2f;
+}
+
+
+.explore-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: 50px;
+}
+
+.explore-button:hover {
+  background-color: #0056b3;
 }
