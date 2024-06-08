@@ -1,21 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 0 20px;
-  margin-left: 100px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 60px;
-  margin-top: 1px;
-}
 
 .destination {
   max-width: 75%;
@@ -79,6 +61,13 @@ h1 {
   margin-right: 10px;
 }
 
+.navbar h1 {
+  text-align: center;
+  margin-bottom: 60px;
+  margin-top: 20px;
+  flex-grow: 1; /* Allow the header to take up the remaining space */
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -92,7 +81,6 @@ h1 {
   border: none;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .dropbtn:hover,
