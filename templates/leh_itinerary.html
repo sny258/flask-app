@@ -7,14 +7,30 @@
     <link rel="stylesheet" href="static/itinerary.css">
 </head>
 <body>
+    
     <!-- Navbar with Dropdown Menu -->
     <div class="navbar">
-        <h1>Leh Ladakh Itinerary 🏔️</h1>
+        <!-- Logo -->
+        <a href="{{ url_for('welcome') }}" class="logo-link">
+            <img id="logo" src="static/logo1.png" alt="Logo">
+        </a>
+        <!-- Header -->
+        <h1>Kedarnath Itinerary 🔱</h1>
         <div class="dropdown">
             <button class="dropbtn">☰</button>
             <div class="dropdown-content">
                 <a href="{{ url_for('welcome') }}">Welcome Page</a>
                 <a href="{{ url_for('login') }}">Logout</a>
+                <div class="contact-us-dropdown">
+                    <a href="#" class="contact-us-link">Contact Us</a>
+                    <div class="contact-us-dropdown-content">
+                        <div id="contact-info" class="contact-info">
+                            <p>Name: Takashi</p>
+                            <p>Email: takashi.hustle@example.com</p>
+                            <p>Phone: 123-456-7890</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -140,5 +156,6 @@
         </div>
         <img src="https://images.pexels.com/photos/1542620/pexels-photo-1542620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Delhi">
     </div>
+    
 </body>
 </html>

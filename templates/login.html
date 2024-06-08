@@ -12,7 +12,14 @@
     </style>
 </head>
 <body>
-    <h1>Let's get you onboarded 😊 !!!</h1>
+    <div class="navbar">
+        <!-- Logo -->
+        <a href="{{ url_for('login') }}" class="logo-link">
+            <img id="logo" src="static/logo1.png" alt="Logo">
+        </a>
+        <!-- Header -->
+        <h1>Where would you like to go ? 😊✈️</h1>
+    </div>
     <div>
         <h2>Login or Sign Up</h2>
         <form method="post">

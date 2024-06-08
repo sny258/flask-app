@@ -1,14 +1,38 @@
 /* login.css */
 
-/* styling for headers */
-h1 {
-    text-align: center;
-    margin-bottom: 50px;        /* Add margin bottom to create space */
-    margin-right: 50px;         /* Added margin to the left */
+/* styling for logo $ Header */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: white;
+    color: black;
+    padding: 0px;
   }
+  
+  .logo-link {
+    display: inline-block;
+    position: absolute; /* Add this line */
+    top: 10px; /* Add this line */
+    left: 30px; /* Add this line */
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+  }
+  
+  #logo {
+    max-width: 125%; /* Add this line */
+    max-height: 125%; /* Add this line */
+  }
+  
+  .navbar h1 {
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    flex-grow: 1; /* Allow the header to take up the remaining space */
+  }
+
+/* styling for headers */
 h2 {
     text-align: center;
-    margin-top: 80px;
     margin-right: 50px;
     margin-bottom: 30px;
 }

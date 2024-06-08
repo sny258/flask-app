@@ -18,14 +18,30 @@
 
 
 
-/* styling for navbar and header & button in it */
+/* styling for logo, Header & Dropdpwn button in it */
 .navbar {
     display: flex;
     justify-content: flex-end;
     background-color: white;
-    padding: 10px;
+    color: black;
     margin-right: 10px;
-}
+    margin-bottom: 20px;
+    padding: 0px;
+  }
+  
+  .logo-link {
+    display: inline-block;
+    position: absolute; /* Add this line */
+    top: 10px; /* Add this line */
+    left: 30px; /* Add this line */
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+  }
+  
+  #logo {
+    max-width: 125%; /* Add this line */
+    max-height: 125%; /* Add this line */
+  }
 
 .navbar h1 {
     text-align: center;
@@ -78,3 +94,29 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+
+
+/* Contact Us styling */
+.contact-us-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .contact-us-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: -200px; /* Position the dropdown to the left */
+  }
+  
+  .contact-us-dropdown:hover .contact-us-dropdown-content {
+    display: block;
+  }
+  
+  .contact-info {
+    padding: 10px;
+  }
