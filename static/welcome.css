@@ -1,4 +1,6 @@
+/* welcome.css */
 
+/* styling for destination objects */
 .destination {
   max-width: 75%;
   display: flex;
@@ -8,22 +10,21 @@
   margin-left: 170px;
 }
 
-
 .destination img {
   max-width: 300px;
   margin-left: 50px;
   border-radius: 5px;
 }
 .destination .text {
-  flex: 1;
+  flex: 1;                            /* Allow the text to take up the remaining space */
+  margin-right: 100px;
 }
 .destination .text h2 {
-  margin: 0;
+  margin: 0;                          /* Remove the default margin */
 }
 .destination .text p {
   margin-top: 10px;
 }
-
 
 #manali-img {
   height: 220px; /* Adjust this height as needed */
@@ -33,8 +34,21 @@
 
 
 
+/* to make the header clickable at hovering */
+.text a {
+  text-decoration: none; /* Remove the default underline */
+  color: inherit; /* Inherit the color from the h2 tag */
+}
 
-.explore-button {
+.text a:hover {
+  cursor: pointer; /* Change the cursor to a hand icon when hovered */
+  text-decoration: underline; /* Underline the text when hovered */
+}
+
+
+
+/* styling for Explore button */
+/* .explore-button {
   display: inline-block;
   padding: 10px 20px;
   background-color: #007BFF;
@@ -46,13 +60,11 @@
 
 .explore-button:hover {
   background-color: #0056b3;
-}
+} */
 
 
 
-
-
-
+/* styling for navbar and header & button in it */
 .navbar {
   display: flex;
   justify-content: flex-end;
