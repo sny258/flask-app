@@ -44,5 +44,17 @@
     </div>
     <!-- Add more destinations as needed -->
 
+    <!-- JavaScript code -->
+    <script>
+        document.querySelectorAll('.explore-button').forEach(function(exploreButton) {
+            exploreButton.addEventListener('mouseover', function() {
+                exploreButton.textContent = "Let's Go!";
+            });
+            exploreButton.addEventListener('mouseout', function() {
+                exploreButton.textContent = "Explore";
+            });
+        });
+    </script>
+
 </body>
 </html>

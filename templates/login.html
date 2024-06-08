@@ -37,5 +37,21 @@
           {% endif %}
         {% endwith %}
     </div>
+
+    <!-- JavaScript code -->
+    <script>
+        var today = new Date();
+        var hour = today.getHours();
+        var greeting;
+        if (hour < 12) {
+            greeting = "Good Morning";
+        } else if (hour < 18) {
+            greeting = "Good Afternoon";
+        } else {
+            greeting = "Good Evening";
+        }
+        document.querySelector('h1').textContent = greeting + ", Let's get you onboarded 😊 !!!";
+    </script>
+
 </body>
 </html>
