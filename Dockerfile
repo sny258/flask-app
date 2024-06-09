@@ -14,3 +14,6 @@ CMD ["app.py" ]
 
 #docker build -t flask-app:latest .
 #docker run -d -p 5000:5000 flask-app:latest
+
+#http://<ec2-public-ip>:5000/login
+#http://<ec2-public-dns>:5000/login

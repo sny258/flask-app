@@ -7,50 +7,48 @@ body {
 
 /* styling for logo & Header */
 .navbar {
-    display: flex;
-    justify-content: flex-end;
-    background-color: white;
-    color: black;
-    padding: 0px;
-  }
-  
-  .logo-link {
-    display: inline-block;
-    position: absolute; /* Add this line */
-    top: 10px; /* Add this line */
-    left: 30px; /* Add this line */
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust as needed */
-  }
-  
-  #logo {
-    max-width: 125%; /* Add this line */
-    max-height: 125%; /* Add this line */
-  }
-  
-  .navbar h1 {
-    text-align: center;
-    margin-bottom: 60px;
-    margin-top: 20px;
-    flex-grow: 1; /* Allow the header to take up the remaining space */
-  }
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+  color: black;
+  padding: 0px;
+}
+.logo-link {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
+}
+#logo {
+  max-width: 125%;
+  max-height: 125%;
+}
+.navbar h1 {
+  text-align: center;
+  margin-bottom: 60px;
+  margin-top: 20px;
+  flex-grow: 1;                     /* Allow the header to take up the remaining space */
+}
 
 /* styling for headers */
 h2 {
     text-align: center;
-    margin-right: 50px;
     margin-bottom: 30px;
+    margin-right: 15px;
 }
-
 
 
 /* styling for form */
 form {
-    text-align: centre;
-    margin-right: 60px;
-    margin-bottom: 30px;
+    text-align: left;
+    margin: auto;                           /* Center the form horizontally */
+    width: 30%;                             /* Set the width of the form */
+    padding: 10px;                          /* Add padding inside the form */
+    /*border: 1px solid black;              /* Add border around the form */
+    /*background-color: lightgray;          /* Add background color to the form */
 }
-
 label {
     color: black;           /* Username & Password text color */
     font-size: 110%;
@@ -60,10 +58,12 @@ input[type="text"],
 input[type="password"] {
     width: 200px;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 5px;                /* Add space between the input boxes */
     border: 1px solid black;
     border-radius: 5px;                /* to make the input box rounded */
-    margin-right: 50px;
+}
+input[type="password"] {                  /*  moving Trip box right side */
+    margin-left: 3px;
 }
 /* Remove default focus styles, which changes the box's border colour */
 input[type="text"]:focus,
@@ -82,19 +82,13 @@ input[type="password"]:focus {
 }
 button[type="submit"] {
     width: 100px;
-    padding: 3px;
-    margin-bottom: 5px;
+    padding: 5px;
     border: 1px solid #ccc;             /* Add border to the button */
     border-radius: 5px;                   /* Add border radius to the button */
-    margin-right: 50px;
-}
-button[type="submit"] {
     background-color: #007bff;
     color: #fff;
-    border: none;
     cursor: pointer;
-    transition: background-color 0.3s;          /* Add transition effect */
-    margin-left: 50px;
+    margin-right: 5px;                    /* move the button a bit right */
 }
 button[type="submit"]:hover {
     background-color: #0056b3;              /* Change background color on hover */

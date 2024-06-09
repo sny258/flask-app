@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leh Itinerary</title>
+    <link rel="stylesheet" href="static/booking.css">
+</head>
+<body>
+    <!-- Navbar with Dropdown Menu -->
+    <div class="navbar">
+        <!-- Logo -->
+        <a href="{{ url_for('welcome') }}" class="logo-link">
+            <img id="logo" src="static/logo1.png" alt="Logo">
+        </a>
+        <!-- Header -->
+        <h1>Booking a trip 😊</h1>
+        <div class="dropdown">
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('welcome') }}">Welcome Page</a>
+                <a href="{{ url_for('login') }}">Logout</a>
+                <div class="contact-us-dropdown">
+                    <a href="#" class="contact-us-link">Contact Us</a>
+                    <div class="contact-us-dropdown-content">
+                        <div id="contact-info" class="contact-info">
+                            <p>Name: Takashi</p>
+                            <p>Email: takashi.hustle@example.com</p>
+                            <p>Phone: 123-456-7890</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- form for Booking -->
+    <form method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+        <label for="trip">Trip:</label>
+        <select type="text" id="trip" name="trip" required>
+            <option value="1">Leh</option>
+            <option value="2">Manali</option>
+            <option value="3">Kedarnath</option>
+        </select><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+        <!-- <input type="submit" value="Book"> -->
+        <div class="button-container">
+            <button type="submit">Book</button>
+        </div>
+    </form>
+
+    <!-- JavaScript code to show congratulations message -->
+    <script>
+        // Set current date as default date
+        var currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById('date').value = currentDate;
+        // Setting the vars for the form elements
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var trip = document.getElementById('trip').options[document.getElementById('trip').selectedIndex].text;
+            var date = document.getElementById('date').value;
+            // Perform any necessary validation here, if any
+            // Show congratulations message as flash message
+            var message = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
+            var flashMessage = document.createElement('div');
+            flashMessage.classList.add('flash-message');
+            flashMessage.style.color = "green";
+            flashMessage.style.fontSize = "1.5em";
+            flashMessage.style.fontWeight = "bold";
+            flashMessage.textContent = message;
+            // Remove any existing flash messages
+            var existingFlashMessages = document.querySelectorAll('.flash-message');
+            existingFlashMessages.forEach(function(element) {
+                element.remove();
+            });
+            // Append the flash message to the body
+            document.body.appendChild(flashMessage);
+        });
+
+        // Function to get query parameters from the URL i.e. location from the page it is being called
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split("&").forEach(function(pair) {
+                const [key, value] = pair.split("=");
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+        // Get the location parameter from the URL
+        const params = getQueryParams();
+        const tripSelect = document.getElementById("trip");
+        // Set the default value if location parameter exists
+        if (params.location) {
+            // Find the option that matches the location and set it as selected
+            for (let i = 0; i < tripSelect.options.length; i++) {
+                if (tripSelect.options[i].text === params.location) {
+                    tripSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+    </script>
+    <!-- Footer for Contact Info -->
+</body>
+</html>
