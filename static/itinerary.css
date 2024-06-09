@@ -9,7 +9,6 @@
     margin-left: 170px;                         
     margin-bottom: 20px;    
 }
-
 .point-container img {
     max-width: 300px;               /* Set the maximum width of the image */
     height: auto;                   /* Set the height to auto */
@@ -20,103 +19,87 @@
 
 /* styling for logo, Header & Dropdpwn button in it */
 .navbar {
-    display: flex;
-    justify-content: flex-end;
-    background-color: white;
-    color: black;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    padding: 0px;
-  }
-  
-  .logo-link {
-    display: inline-block;
-    position: absolute; /* Add this line */
-    top: 10px; /* Add this line */
-    left: 30px; /* Add this line */
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust as needed */
-  }
-  
-  #logo {
-    max-width: 125%; /* Add this line */
-    max-height: 125%; /* Add this line */
-  }
-
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+  color: black;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  padding: 0px;
+}
+.logo-link {
+  display: inline-block;                /* Make the logo a block element */
+  position: absolute;                   /* Position the logo */
+  top: 10px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
+}
+#logo {
+  max-width: 125%;
+  max-height: 125%; 
+}
 .navbar h1 {
-    text-align: center;
-    margin-bottom: 60px;
-    margin-top: 20px;
-    flex-grow: 1; /* Allow the header to take up the remaining space */
-  }
-
+  text-align: center;
+  margin-bottom: 60px;
+  margin-top: 20px;
+  flex-grow: 1;
+}
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
-
 .dropbtn {
-    background-color: white;
-    color: black;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
-
 .dropbtn:hover,
 .dropbtn:focus {
-    background-color: white;
+  background-color: white;          /* dropdown button colour upon hovering */
 }
-
 .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;            /* dropdown background color */
+  min-width: 130px;                     /* dropdown content width */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);       /* box arround dropdown content */
 }
-
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: black;                           /* Text color for dropdown button a's */
+  padding: 12px 16px;                       /* Padding for dropdown button a's */
+  text-decoration: none;
+  display: block;
 }
-
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+  background-color: whitesmoke;           /* Background color for dropdown button a's upon hovering */
 }
-
-.dropdown:hover .dropdown-content {
-    display: block;
+.dropdown:hover .dropdown-content {         /* Display dropdown content upon hovering */
+  display: block;
 }
-
 
 
 /* Contact Us styling */
 .contact-us-dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .contact-us-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    left: -200px; /* Position the dropdown to the left */
-  }
-  
-  .contact-us-dropdown:hover .contact-us-dropdown-content {
-    display: block;
-  }
-  
-  .contact-info {
-    padding: 10px;
-  }
+  position: relative;
+  /* display: inline-block; */        /* limit Contact Us dropdown styling width */
+}
+.contact-us-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  left: -200px;                         /* Position of Contact Us dropdown content */
+}
+.contact-us-dropdown:hover .contact-us-dropdown-content {
+  display: block;
+}
+.contact-info {
+  padding: 10px;
+}

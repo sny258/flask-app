@@ -3,17 +3,16 @@
 /* styling for destination objects */
 .destination {
   max-width: 75%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex;                      /* Make the image and text appear side by side */
+  justify-content: space-between;     /* Add space between the image and text */
+  align-items: center;                /* Align the items vertically */
   margin-bottom: 30px;
   margin-left: 170px;
 }
-
 .destination img {
   max-width: 300px;
   margin-left: 50px;
-  border-radius: 5px;
+  border-radius: 5px;                 /* Add rounded corners to the image */
 }
 .destination .text {
   flex: 1;                            /* Allow the text to take up the remaining space */
@@ -25,26 +24,22 @@
 .destination .text p {
   margin-top: 10px;
 }
-
 #manali-img {
-  height: 220px; /* Adjust this height as needed */
+  height: 220px;                    /* Adjust this height as needed */
   width: 400px;
-  object-fit: cover;
-}
-
+  object-fit: cover;                /* Ensure the image covers the entire box */
+}   
 
 
 /* to make the header clickable at hovering */
 .text a {
-  text-decoration: none; /* Remove the default underline */
-  color: inherit; /* Inherit the color from the h2 tag */
+  text-decoration: none;        /* Remove the default underline */
+  color: inherit;               /* Inherit the color from the h2 tag */
 }
-
 .text a:hover {
-  cursor: pointer; /* Change the cursor to a hand icon when hovered */
-  text-decoration: underline; /* Underline the text when hovered */
+  cursor: pointer;              /* Change the cursor to a hand icon when hovered */
+  text-decoration: underline;   /* Underline the text when hovered */
 }
-
 
 
 /* styling for Explore button */
@@ -63,7 +58,6 @@
 } */
 
 
-
 /* styling for logo, Header & Dropdpwn button in it */
 .navbar {
   display: flex;
@@ -74,33 +68,28 @@
   margin-bottom: 20px;
   padding: 0px;
 }
-
 .logo-link {
-  display: inline-block;
-  position: absolute; /* Add this line */
-  top: 10px; /* Add this line */
-  left: 30px; /* Add this line */
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
+  display: inline-block;                /* Make the logo a block element */
+  position: absolute;                   /* Position the logo */
+  top: 10px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
 }
-
 #logo {
-  max-width: 125%; /* Add this line */
-  max-height: 125%; /* Add this line */
+  max-width: 125%;
+  max-height: 125%; 
 }
-
 .navbar h1 {
   text-align: center;
   margin-bottom: 60px;
   margin-top: 20px;
-  flex-grow: 1; /* Allow the header to take up the remaining space */
+  flex-grow: 1;
 }
-
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
 .dropbtn {
   background-color: white;
   color: black;
@@ -110,63 +99,51 @@
   cursor: pointer;
   font-weight: bold;
 }
-
 .dropbtn:hover,
 .dropbtn:focus {
-  background-color: white;
+  background-color: white;          /* dropdown button colour upon hovering */
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
   right: 0;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  background-color: white;            /* dropdown background color */
+  min-width: 120px;                     /* dropdown content width */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);       /* box arround dropdown content */
 }
-
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+  color: black;                           /* Text color for dropdown button a's */
+  padding: 12px 16px;                       /* Padding for dropdown button a's */
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: whitesmoke;           /* Background color for dropdown button a's upon hovering */
 }
-
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content {         /* Display dropdown content upon hovering */
   display: block;
 }
-
 
 
 /* Contact Us styling */
 .contact-us-dropdown {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */        /* limit Contact Us dropdown styling width */
 }
-
 .contact-us-dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: whitesmoke;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  left: -200px; /* Position the dropdown to the left */
+  left: -200px;                         /* Position of Contact Us dropdown content */
 }
-
 .contact-us-dropdown:hover .contact-us-dropdown-content {
   display: block;
 }
-
 .contact-info {
   padding: 10px;
 }
-
 
 
 /* footer styling */
@@ -182,7 +159,6 @@ footer {
   margin-bottom: 20px;
   padding: 0px;
 }
-
 .footer-find-us {
   margin-left: 75px;
 }
@@ -203,7 +179,6 @@ footer {
 .footer-social a:hover {
   color: greenyellow;
 }
-
 .footer-contact h3 {
   border-bottom: 2px solid;
   display: inline-block;

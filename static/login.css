@@ -1,6 +1,11 @@
 /* login.css */
 
-/* styling for logo $ Header */
+/* styling for the body, to make it at centre */
+body {
+    text-align: center;
+}
+
+/* styling for logo & Header */
 .navbar {
     display: flex;
     justify-content: flex-end;
@@ -47,7 +52,8 @@ form {
 }
 
 label {
-    color: black;           /* Set label text color to black */
+    color: black;           /* Username & Password text color */
+    font-size: 110%;
 }
 
 input[type="text"],
@@ -55,11 +61,18 @@ input[type="password"] {
     width: 200px;
     padding: 5px;
     margin-bottom: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid black;
+    border-radius: 5px;                /* to make the input box rounded */
     margin-right: 50px;
 }
+/* Remove default focus styles, which changes the box's border colour */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    box-shadow: none;
+}
 
+/* styling for Login & Singup buttons */
 .button-container {
     display: flex;                      /* Display the container as a flex container */
     flex-direction: column;
@@ -67,7 +80,6 @@ input[type="password"] {
     gap: 10px;                          /* Add space between the buttons */
     margin-top: 20px;
 }
-
 button[type="submit"] {
     width: 100px;
     padding: 3px;
@@ -76,7 +88,6 @@ button[type="submit"] {
     border-radius: 5px;                   /* Add border radius to the button */
     margin-right: 50px;
 }
-
 button[type="submit"] {
     background-color: #007bff;
     color: #fff;
@@ -85,7 +96,6 @@ button[type="submit"] {
     transition: background-color 0.3s;          /* Add transition effect */
     margin-left: 50px;
 }
-
 button[type="submit"]:hover {
     background-color: #0056b3;              /* Change background color on hover */
 }
@@ -94,11 +104,11 @@ button[type="submit"]:hover {
 /* styling for error messages */
 ul {
     color: red;
-    list-style-type: none; /* Remove bullet points */
+    list-style-type: none;      /* Remove bullet points */
     padding: 0;
 }
 
 ul li {
-    margin-bottom: 5px; /* Adjust spacing between messages */
-    font-weight: bold; /* Make the error messages bold */
+    margin-bottom: 5px;         /* Adjust spacing between messages */
+    font-weight: bold;          /* Make the error messages bold */
 }

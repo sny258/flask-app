@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="static/login.css">
-    <style>
-        body {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <div class="navbar">
@@ -21,7 +16,8 @@
         <h1>Where would you like to go ? 😊✈️</h1>
     </div>
     <div>
-        <h2>Login or Sign Up</h2>
+        <h2>Login or Signup</h2>
+        <!-- form for Login & Signup -->
         <form method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -31,9 +27,10 @@
             <br>
             <b<div class="button-container">
                 <button type="submit" formaction="{{ url_for('login') }}">Login</button>
-                <button type="submit" formaction="{{ url_for('signup') }}">Sign Up</button>
+                <button type="submit" formaction="{{ url_for('signup') }}">Signup</button>
             </div>
         </form>
+        <!-- Flash messages for Errors -->
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <ul>
