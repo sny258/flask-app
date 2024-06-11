@@ -1,66 +1,83 @@
 /* login.css */
 
-/* styling for the body, to make it at centre */
-body {
-    text-align: center;
-}
-
 /* styling for logo & Header */
 .navbar {
-  display: flex;
-  justify-content: flex-end;
+  display: flex;                            /* Make the container a flex container */
+  align-items: center;                      /* Align items at center */
+  /*flex-direction: column;                   /* Stack items vertically, without it item will stack horizontally */
   background-color: white;
   color: black;
-  padding: 0px;
+  padding: 10px;                            /* Add space around */
+  border: 1px solid black;                /* Add border around the form */
 }
 .logo-link {
-  display: inline-block;
-  position: absolute;
-  top: 10px;
-  left: 30px;
-  width: 100px;
-  height: 100px;
+  display: inline-block;                  /* this allows logo to take space according to its width */
+  margin-right: 5px;                      /* Add margin between logo and h1 */
+  margin-left: 25px;
+  border: 1px solid black;
 }
 #logo {
-  max-width: 125%;
-  max-height: 125%;
+    width: 100px;
+    height: 100px;
+    transform: scale(1.8);          /* zoom the logo image */
 }
-.navbar h1 {
+h1 {
   text-align: center;
-  margin-bottom: 60px;
-  margin-top: 20px;
   flex-grow: 1;                     /* Allow the header to take up the remaining space */
+  margin-right: 50px;
+  border: 1px solid black;
+  /*padding-left: 10px;               /* If want to move the header text only, move with margin will ove the entire header box */
 }
+  
 
+
+.login-content {
+    display: flex;                            /* Make the container a flex container */
+    align-items: center;                      /* Align items at center */
+    /*flex-direction: column;                   /* Stack items vertically, without it item will stack horizontally */
+    background-color: white;
+    color: black;
+    padding: 10px;                            /* Add padding for better spacing */
+    border: 1px solid black;                /* Add border around the form */
+    margin-top: 20px;
+  }
+.login-header-form-container {
+    display: flex;
+    flex-direction: column;                 /* Stack items vertically, otherwise they will be stacked horizontally  */
+    align-items: center;                    /* Align items at centre with compact width, it can be increased in the items */
+    flex-grow: 1;                           /* Allow the container to take up the remaining space, without it this contaniner will be on left side of 'login-content' container */
+    background-color: white;
+    color: black;
+    padding: 10px;                          /* Add padding for better spacing */
+    margin-top: 5px;
+    border: 1px solid black;              /* Add border around the form */
+  }
 /* styling for headers */
 h2 {
     text-align: center;
-    margin-bottom: 30px;
-    margin-right: 15px;
+    margin-bottom: 25px;
+    border: 1px solid black;
 }
-
-
 /* styling for form */
 form {
-    text-align: left;
+    text-align: center;
     margin: auto;                           /* Center the form horizontally */
-    width: 30%;                             /* Set the width of the form */
+    /*width: 30%;                             /* Set the width of the form */
     padding: 10px;                          /* Add padding inside the form */
-    /*border: 1px solid black;              /* Add border around the form */
+    border: 1px solid black;              /* Add border around the form */
     /*background-color: lightgray;          /* Add background color to the form */
 }
 label {
     color: black;           /* Username & Password text color */
     font-size: 110%;
 }
-
 input[type="text"],
 input[type="password"] {
     width: 200px;
     padding: 5px;
     margin-bottom: 5px;                /* Add space between the input boxes */
-    border: 1px solid black;
     border-radius: 5px;                /* to make the input box rounded */
+    border: 1px solid black;
 }
 input[type="password"] {                  /*  moving Trip box right side */
     margin-left: 3px;
@@ -74,25 +91,30 @@ input[type="password"]:focus {
 
 /* styling for Login & Singup buttons */
 .button-container {
-    display: flex;                      /* Display the container as a flex container */
-    flex-direction: column;
+    display: flex;                      /* Display the button container as a flex container */
+    flex-direction: column;             /* Stack buttons vertically */
     align-items: center;
     gap: 10px;                          /* Add space between the buttons */
     margin-top: 20px;
+    border: 1px solid black;
+    width: fit-content;                 /* Set the width of the button container */
+    margin: 0 auto;                     /* Center horizontally */
+    margin-top: 10px;
 }
 button[type="submit"] {
-    width: 100px;
+    /*width: 100px;                        /* Set the width of the button */
     padding: 5px;
-    border: 1px solid #ccc;             /* Add border to the button */
-    border-radius: 5px;                   /* Add border radius to the button */
+    border: 1px solid #ccc;              /* Add border to the button */
+    border-radius: 5px;                    /* Add border radius to the button */
     background-color: #007bff;
     color: #fff;
-    cursor: pointer;
-    margin-right: 5px;                    /* move the button a bit right */
+    cursor: pointer;                       /* Change cursor to pointer on hover */
+    /*margin-right: 5px;                    /* move the button a bit right */
 }
 button[type="submit"]:hover {
     background-color: #0056b3;              /* Change background color on hover */
 }
+
 
 
 /* styling for error messages */

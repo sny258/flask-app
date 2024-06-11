@@ -10,36 +10,43 @@
     <div class="navbar">
         <!-- Logo -->
         <a href="{{ url_for('login') }}" class="logo-link">
-            <img id="logo" src="static/logo1.png" alt="Logo">
+            <img id="logo" src="static/logo11.png" alt="Logo">
         </a>
         <!-- Header -->
-        <h1>Where would you like to go ? 😊✈️</h1>
+        <h1>Let's get you onboarded 😊 !!!</h1>
     </div>
-    <div>
-        <h2>Login or Signup</h2>
-        <!-- form for Login & Signup -->
-        <form method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <div class="button-container">
-                <button type="submit" formaction="{{ url_for('login') }}">Login</button>
-                <button type="submit" formaction="{{ url_for('signup') }}">Signup</button>
-            </div>
-        </form>
-        <!-- Flash messages for Errors -->
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul>
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
+    <div class="login-content">
+        <!-- This is test div, to test it iteams in main div can stack multiple divs-->
+        <!-- <div class="test">
+            <h2>Test</h2>
+        </div> -->
+        <!-- Logo and Header Container -->
+        <div class="login-header-form-container">
+            <h2>Login or Signup</h2>
+            <!-- form for Login & Signup -->
+            <form method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <div class="button-container">
+                    <button type="submit" formaction="{{ url_for('login') }}">Login</button>
+                    <button type="submit" formaction="{{ url_for('signup') }}">Signup</button>
+                </div>
+            </form>
+            <!-- Flash messages for Errors -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+        </div>
     </div>
 
     <!-- JavaScript code to add greetings in header w.r.t time -->
