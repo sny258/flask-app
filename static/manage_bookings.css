@@ -1,0 +1,132 @@
+
+/* styling for logo, Header & Dropdpwn button in it */
+.navbar {
+  display: flex;
+  align-items: center;                      /* Align items at center */
+  background-color: white;
+  color: black;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}
+.logo-link {
+  display: inline-block;                /* Make the logo a block element */
+  margin-right: 5px;
+  margin-left: 25px;
+  border: 1px solid black;
+}
+#logo {
+  width: 100px;
+  height: 100px;
+  transform: scale(1.8);
+}
+.navbar h1 {
+  text-align: center;
+  flex-grow: 1;                       /* Allow the header to take up the remaining space */
+  margin-right: 5px;
+  border: 1px solid black;
+  /*padding-left: 10px;               /* If want to move the header text only, move with margin will ove the entire header box */
+}
+
+/* styling for dropdown button */
+.dropbtn {
+  background-color: white;
+  color: black;
+  padding: 10px;                      /* generate space around the text */
+  font-size: 16px;
+  border: none;                       /* remove icon border */
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid black;
+}
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: lightblue;          /* dropdown button colour upon hovering */
+}
+.dropdown-content {
+  display: none;                      /* Hide the dropdown content */
+  position: absolute;                 /* dropdown button won't change position upon hover */
+  right: 15px;                           /* will show dropdown content just below left */
+  background-color: white;       /* dropdown background color */
+  min-width: 120px;                     /* dropdown content width */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);       /* shadow coloring around dropdown content*/
+  
+}
+.dropdown-content a {
+  color: black;                           /* Text color for dropdown button a's */
+  padding: 12px 16px;                       /* Padding for dropdown button a's */
+  text-decoration: none;                    /* Remove the default underline */
+  display: block;                           /* Display dropdown button a's as block elements */
+}
+.dropdown-content a:hover {
+  background-color: lightblue;           /* Background color for dropdown button a's upon hovering */
+}
+/* Most Important styling for dropdown button */
+.dropdown:hover .dropdown-content {         /* Show the dropdown content upon hovering */
+  display: block;
+}
+
+/* Contact Us styling */
+.contact-us-dropdown-content {
+  display: none;                          /* Hide the dropdown content */
+  position: absolute;                     /* dropdown button won't change position upon hover */
+  background-color: lightcyan;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  left: -210px;                         /* Position of Contact Us dropdown content */
+  border-radius: 5px; 
+}
+.contact-us-dropdown:hover .contact-us-dropdown-content {
+  display: block;                       /* Show the Contact Us content upon hovering */
+}
+.contact-info {
+  padding: 10px;
+}
+  
+  
+
+/* styling for booking details */
+.booking-details {
+    display: flex;
+    align-items: center;                      /* Align items at center */
+    flex-direction: column;                   /* Align items in column */
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+  }
+h2 {
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+table {
+    /* width: 100%; */
+    display: flex;
+    align-items: center;                      /* Align items at center */
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+button {
+    background-color: #f44336; /* Red */
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px; 
+}

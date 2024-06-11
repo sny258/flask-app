@@ -19,6 +19,7 @@
             <button class="dropbtn">☰</button>
             <div class="dropdown-content">
                 <a href="{{ url_for('welcome') }}">Welcome Page</a>
+                <a href="{{ url_for('manage_booking') }}">My Bookings</a>
                 <a href="{{ url_for('login') }}">Logout</a>
                 <div class="contact-us-dropdown">
                     <a href="#" class="contact-us-link">Contact Us</a>
@@ -36,6 +37,8 @@
     <div class="booking-form-container">
         <!-- form for Booking -->
         <form method="post">
+            <!-- It is a hidden field to capture the logged-in user's username -->
+            <input type="hidden" id="username" name="username" value="{{ session['username'] }}">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
             <label for="email">Email:</label>
@@ -44,9 +47,12 @@
             <input type="tel" id="phone" name="phone" required><br>
             <label for="trip">Trip:</label>
             <select type="text" id="trip" name="trip" required>
-                <option value="1">Leh</option>
+                <!-- <option value="1">Leh</option>
                 <option value="2">Manali</option>
-                <option value="3">Kedarnath</option>
+                <option value="3">Kedarnath</option> -->
+                <option>Leh</option>
+                <option>Manali</option>
+                <option>Kedarnath</option>
             </select><br>
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required><br>
@@ -64,32 +70,80 @@
         document.getElementById('date').value = currentDate;
         // Setting the vars for the form elements
         document.querySelector('form').addEventListener('submit', function(event) {
+            
+            // This means the form data is not being sent to the server.
+            // i.e. the post request is not being made to the server.
             event.preventDefault();
+            
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var phone = document.getElementById('phone').value;
-            var trip = document.getElementById('trip').options[document.getElementById('trip').selectedIndex].text;
+            //var trip = document.getElementById('trip').options[document.getElementById('trip').selectedIndex].text;
+            var trip = document.getElementById('trip').value
             var date = document.getElementById('date').value;
-            // Perform any necessary validation here, if any
-            // Show congratulations message as flash message
-            var message = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
-            var flashMessage = document.createElement('div');
-            flashMessage.classList.add('flash-message');
-            flashMessage.style.color = "green";
-            flashMessage.style.fontSize = "1.5em";
-            flashMessage.style.fontWeight = "bold";
-            //flashMessage.align = "center";
-            flashMessage.textContent = message;
-            // Remove any existing flash messages
-            var existingFlashMessages = document.querySelectorAll('.flash-message');
-            existingFlashMessages.forEach(function(element) {
-                element.remove();
+            var username = document.getElementById('username').value;
+
+            // Create a new FormData object
+            var formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('trip', trip);
+            formData.append('date', date);
+            formData.append('username', username);
+            
+            // Send an AJAX request, so that the page does not reload after form submission
+            // without this the page will reload and the booking message will be gone 
+            fetch('/booking', {  // replace '/booking' with your actual submission URL
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+                if (response.ok) {
+                    // Show the success message
+                    var message = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
+                    var flashMessage = document.createElement('div');
+                    flashMessage.classList.add('flash-message');
+                    flashMessage.style.color = "green";
+                    flashMessage.style.fontSize = "1.5em";
+                    flashMessage.style.fontWeight = "bold";
+                    // flash message content
+                    flashMessage.textContent = message;
+                    // Remove any existing flash messages
+                    var existingFlashMessages = document.querySelectorAll('.flash-message');
+                    existingFlashMessages.forEach(function(element) {
+                        element.remove();
+                    });
+                    // Append the flash message to the body
+                    //document.body.appendChild(flashMessage);
+                    // Append the flash message to the booking-form-container
+                    document.querySelector('.booking-form-container').appendChild(flashMessage);
+                } else {
+                    console.error('Error:', response.statusText);
+                }
+            }).catch(function(error) {
+                console.error('Error:', error);
             });
-            // Append the flash message to the body
-            //document.body.appendChild(flashMessage);
-            // Append the flash message to the booking-form-container
-            document.querySelector('.booking-form-container').appendChild(flashMessage);
         });
+            // // Show congratulations message as flash message
+            // var message = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
+            // var flashMessage = document.createElement('div');
+            // flashMessage.classList.add('flash-message');
+            // flashMessage.style.color = "green";
+            // flashMessage.style.fontSize = "1.5em";
+            // flashMessage.style.fontWeight = "bold";
+            // //flashMessage.align = "center";
+            // flashMessage.textContent = message;
+            // // Remove any existing flash messages
+            // var existingFlashMessages = document.querySelectorAll('.flash-message');
+            // existingFlashMessages.forEach(function(element) {
+            //     element.remove();
+            // });
+            // // Append the flash message to the body
+            // //document.body.appendChild(flashMessage);
+            // // Append the flash message to the booking-form-container
+            // document.querySelector('.booking-form-container').appendChild(flashMessage);
+        // });
+
 
         // Function to get query parameters from the URL i.e. location from the page it is being called
         function getQueryParams() {
@@ -113,6 +167,7 @@
                 }
             }
         }
+        
     </script>
 
     <!-- Footer for Contact Info -->

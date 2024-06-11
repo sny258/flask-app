@@ -1,0 +1,71 @@
+<!-- HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bookings</title>
+    <link rel="stylesheet" href="static/manage_bookings.css">
+</head>
+<body>
+    <!-- Navbar with Dropdown Menu -->
+    <div class="navbar">
+        <!-- Logo -->
+        <a href="{{ url_for('welcome') }}" class="logo-link">
+            <img id="logo" src="static/logo11.png" alt="Logo">
+        </a>
+        <!-- Header -->
+        <h1>Manage your bookings</h1>
+        <div class="dropdown">
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('welcome') }}">Welcome Page</a>
+                <a href="{{ url_for('login') }}">Logout</a>
+                <div class="contact-us-dropdown">
+                    <a href="#" class="contact-us-link">Contact Us</a>
+                    <div class="contact-us-dropdown-content">
+                        <div id="contact-info" class="contact-info">
+                            <p>Name: Takashi</p>
+                            <p>Email: takashi.hustle@example.com</p>
+                            <p>Phone: 123-456-7890</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="booking-details">
+        <h2>Booking Details</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Trip</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.name }}</td>
+                    <td>{{ booking.email }}</td>
+                    <td>{{ booking.phone }}</td>
+                    <td>{{ booking.trip }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td>
+                        <form action="{{ url_for('cancel_booking') }}" method="post">
+                            <input type="hidden" name="booking_id" value="{{ booking.booking_id }}">
+                            <button type="submit">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No bookings found.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>
