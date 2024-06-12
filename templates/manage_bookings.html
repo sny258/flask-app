@@ -38,6 +38,7 @@
         <h2>Booking Details</h2>
         <table>
             <tr>
+                <th>Booking ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -47,25 +48,109 @@
             </tr>
             {% for booking in bookings %}
                 <tr>
+                    <td>{{ booking.booking_id }}</td>
                     <td>{{ booking.name }}</td>
                     <td>{{ booking.email }}</td>
                     <td>{{ booking.phone }}</td>
                     <td>{{ booking.trip }}</td>
                     <td>{{ booking.date }}</td>
                     <td>
-                        <form action="{{ url_for('cancel_booking') }}" method="post">
+                        <!-- Simple button can't call route with POST method -->
+                        <!-- this form with button will delete the booking on click --> 
+                        <!-- <form action="{{ url_for('cancel_booking') }}" method="post">
                             <input type="hidden" name="booking_id" value="{{ booking.booking_id }}">
                             <button type="submit">Cancel</button>
-                        </form>
+                        </form> -->
+
+                        <!-- Button to open the form for cancelling the trip -->
+                        <!-- Need to create a unique popupForm element for each row, and set the booking_id value accordingly. -->
+                        <!-- The popupForm element now has a unique ID based on the booking_id: popupForm_{{ booking.booking_id }} --> 
+                        <button class="cancle-button" onclick="openForm('popupForm_{{ booking.booking_id }}')">Cancel</button>
+                        <div class="form-popup" id="popupForm_{{ booking.booking_id }}">
+                            <form action="{{ url_for('cancel_booking') }}" method="post" class="form-container">
+                              <h1>Are you sure 🤔 ?</h1>                          
+                              <input type="hidden" name="booking_id" value="{{ booking.booking_id }}">
+                              <button type="submit" class="btn">Yes</button>
+                              <button type="button" class="btn-no" onclick="closeForm('popupForm_{{ booking.booking_id }}')">No</button>
+                            </form>
+                        </div>
+
                     </td>
                 </tr>
             {% else %}
                 <tr>
+                    <!-- colspan 6 to span the entire row's 6 columns -->
                     <td colspan="6">No bookings found.</td>
                 </tr>
             {% endfor %}
         </table>
     </div>
+
+    <!-- New popup for success message -->
+    <!-- This will be displayed when a trip is cancelled successfully -->
+    <!-- simple button can't call route with POST method, for that JS function 'closeSuccessPopup' is used below -->  
+    <div class="success-popup" id="successPopup">
+        <h1 id="successMessage"></h1>
+        <button type="button" class="btn-close" onclick="closeSuccessPopup()">Close</button>
+    </div>
+
+
+    <!-- JavaScript code -->
+    <script>
+        // JavaScript code to open and close the form on clicking cancle button with unique popupForm ID
+        function openForm(formId) {
+            document.getElementById(formId).style.display = "block";
+        }
+
+        function closeForm(formId) {
+            document.getElementById(formId).style.display = "none";
+        }
+
+        // This will open the success message popup, when a tip is cancelled.
+        // Once the user clicks on the close button, the page will be redirected to the manage_booking page.
+        function closeSuccessPopup() {
+            document.getElementById("successPopup").style.display = "none";
+            window.location.href = "/manage_booking";
+        }
+
+        // JavaScript code to send a POST request to '/cancel_booking' route
+        // Sending using JS although we can use form submit as well but it will redirect to the '/manage_booking' page. We want to avoid that and open a new success message popup.
+        // When success message popup is closed, the page will be redirected to the '/manage_booking' page and trip data will be refreshed as well.
+        
+        // get the booking id of the clicked cancel button i.e of particular row
+        document.querySelectorAll('.cancle-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var bookingId = this.getAttribute('data-booking-id');
+                openForm('popupForm_' + bookingId);
+            });
+        });
+        // Using submit event listener to each '.form-container' element
+        // Inside the submit event listener, we're getting the booking_id value from the input field within the same form container, and using it to send the POST request to the server.
+        document.querySelectorAll('.form-container').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var bookingId = this.querySelector('input[name="booking_id"]').value;
+                var formData = new FormData();
+                formData.append('booking_id', bookingId);
+            
+                fetch('/cancel_booking', {
+                    method: 'POST',
+                    body: formData
+                }).then(function(response) {
+                    if (response.ok) {
+                        closeForm('popupForm_' + bookingId);
+                        document.getElementById("successMessage").textContent = 'Trip has been cancelled 😭';
+                        document.getElementById("successPopup").style.display = "block";
+                    } else {
+                        console.error('Error:', response.statusText);
+                    }
+                }).catch(function(error) {
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+    </script>
 
 </body>
 </html>

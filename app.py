@@ -33,58 +33,68 @@ def init_sqlite_db():
 
 init_sqlite_db()
 
-
+# Home page route, which redirects to login page
 @app.route('/')
 def home():
     return redirect(url_for('login'))
 
-
+# login page route, which will accept both GET and POST requests
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        # Connect to DB and create a cursor
         with sqlite3.connect('database.db') as conn:
             cur = conn.cursor()
             cur.execute("SELECT * FROM users WHERE username=?", (username,))
             user = cur.fetchone()
-
+            # Check if user exists in DB, otherwise need to Sign up  
             if user:
+                # Check if username and password combination exists, then redirect to welcome page
+                # Otherwise Invalida username or password.
                 cur.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
                 user = cur.fetchone()
                 if user:
                     session['username'] = username
                     return redirect(url_for('welcome'))
                 else:
-                    flash('Invalid username or password. Please try again.')
+                    flash('Invalid username or password. Please try again 🤪')
             else:
-                flash('User does not exist. Please sign up.')
-
+                flash('User does not exist. Please sign up 🙂')
+    # Redirect to login page in case of GET request
     return render_template('login.html')
 
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['GET','POST'])
 def signup():
-    username = request.form['username']
-    password = request.form['password']
-
-    with sqlite3.connect('database.db') as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM users WHERE username=?", (username,))
-        user = cur.fetchone()
-
-        if user:
-            flash('Username already exists. Please choose a different one.')
-        else:
-            cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-            conn.commit()
-            session['username'] = username
-            return redirect(url_for('welcome'))
-
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        # Connect to DB and create a cursor
+        with sqlite3.connect('database.db') as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM users WHERE username=?", (username,))
+            user = cur.fetchone()
+             # Check if username exists in DB, If NO then add in DB and redirect to welcome page
+             # Otherwise username already exists.
+            if user:
+                flash('Username already exists. Please choose a different one 🧐')
+            else:
+                cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                conn.commit()
+                session['username'] = username
+                return redirect(url_for('welcome'))
+    # Redirect to login page in case of GET request
     return redirect(url_for('login'))
 
 
+# Default method is GET in flask if nothing is mentioned
+# If POST method is mentioned in route, then the route will only accept POST requests
+
+
+# Route for welcome page, if user directly want to access the welcome page
+# Then check if user's login session is still active, otherwise send to login page
 @app.route('/welcome')
 def welcome():
     if 'username' in session:
@@ -92,6 +102,7 @@ def welcome():
     else:
         return redirect(url_for('login'))
 
+# Route to log user put of session
 @app.route('/logout', methods=['POST'])
 def logout():
     session.pop('username', None)
@@ -152,11 +163,10 @@ def booking():
             #return redirect(url_for('booking'))
             # Return a JSON response on calling the API, instead of redirecting
             return jsonify({'status': 'success', 'message': f'Congratulations 🎉, {name}! Your trip to {trip} on {date} has been booked. 🥳'})
-        
         # GET request
         else:
             return render_template('booking.html', username=username)
-        return redirect(url_for('login'))
+    return redirect(url_for('login'))
 
 
 @app.route('/manage_booking')
@@ -184,8 +194,8 @@ def cancel_booking():
         cur = conn.cursor()
         cur.execute("DELETE FROM bookings WHERE booking_id = ?", (booking_id,))
         conn.commit()
-    return redirect(url_for('manage_booking'))
-    #return jsonify({'status': 'success', 'message': 'Booking canceled successfully'})
+    #return redirect(url_for('manage_booking'))
+    return jsonify({'status': 'success', 'message': 'Booking canceled successfully'})
 
 
 if __name__ == '__main__':

@@ -39,6 +39,7 @@
         <form method="post">
             <!-- It is a hidden field to capture the logged-in user's username -->
             <input type="hidden" id="username" name="username" value="{{ session['username'] }}">
+            <!-- Required Inputs -->
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
             <label for="email">Email:</label>
@@ -63,8 +64,26 @@
         </form>
     </div>
 
+
+    <!-- New popup for success message -->
+    <!-- This will be displayed when a trip is cancelled successfully -->
+    <!-- simple button can't call route with POST method, for that JS function 'closeSuccessPopup' is used below -->  
+    <!-- <div class="success-popup" id="successPopup">
+        <h1 id="successMessage"></h1>
+        <button type="button" class="btn-close" onclick="closeSuccessPopup()">Close</button>
+    </div> -->
+
+
     <!-- JavaScript code to show congratulations message -->
     <script>
+
+        // // This will open the success message popup, when a tip is cancelled.
+        // // Once the user clicks on the close button, the page will be redirected to the booking page.
+        // function closeSuccessPopup() {
+        //     document.getElementById("successPopup").style.display = "none";
+        //     window.location.href = "/booking";
+        // }
+
         // Set current date as default date
         var currentDate = new Date().toISOString().split('T')[0];
         document.getElementById('date').value = currentDate;
@@ -99,6 +118,13 @@
                 body: formData
             }).then(function(response) {
                 if (response.ok) {
+                    
+                    // // will open the success message popup
+                    // document.getElementById("successMessage").textContent = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
+                    // // this will make the success message popup visible, by default it is hidden
+                    // document.getElementById("successPopup").style.display = "block";
+
+                    //This code is to show success mesaage as port of the DIV element
                     // Show the success message
                     var message = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
                     var flashMessage = document.createElement('div');
@@ -117,6 +143,7 @@
                     //document.body.appendChild(flashMessage);
                     // Append the flash message to the booking-form-container
                     document.querySelector('.booking-form-container').appendChild(flashMessage);
+
                 } else {
                     console.error('Error:', response.statusText);
                 }
@@ -124,26 +151,6 @@
                 console.error('Error:', error);
             });
         });
-            // // Show congratulations message as flash message
-            // var message = "Congratulations 🎉, " + name + "! Your trip to " + trip + " on " + date + " has been booked. 🥳";
-            // var flashMessage = document.createElement('div');
-            // flashMessage.classList.add('flash-message');
-            // flashMessage.style.color = "green";
-            // flashMessage.style.fontSize = "1.5em";
-            // flashMessage.style.fontWeight = "bold";
-            // //flashMessage.align = "center";
-            // flashMessage.textContent = message;
-            // // Remove any existing flash messages
-            // var existingFlashMessages = document.querySelectorAll('.flash-message');
-            // existingFlashMessages.forEach(function(element) {
-            //     element.remove();
-            // });
-            // // Append the flash message to the body
-            // //document.body.appendChild(flashMessage);
-            // // Append the flash message to the booking-form-container
-            // document.querySelector('.booking-form-container').appendChild(flashMessage);
-        // });
-
 
         // Function to get query parameters from the URL i.e. location from the page it is being called
         function getQueryParams() {

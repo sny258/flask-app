@@ -179,3 +179,49 @@ button[type="submit"]:hover {
   /*text-align: left;                     /* will take parent container settings and allign it to center */
   border: 1px solid black;
 }
+
+
+
+
+
+
+/* styling for success popup */
+.success-popup {
+  display: none;                      /* Hide the popup from screen utill opened */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid black;
+  align-items: center;                /* Align items at center */
+  text-align: center;         
+  flex-direction: column;  
+  width: 50%;                         /* Width of the popup */
+  height: 25%;
+}
+.success-popup h1 {
+  /*border: none;                       /* Remove the border, otherwise parent has border */
+  margin-bottom: 20px;
+  width: 100%;                        /* Width of the popup header, 100% of form width */
+  text-align: center;
+  border: 1px solid black;
+  font-size: 150%;
+}
+.success-popup .btn-close {
+  border: none;
+  background-color: #04AA6D;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  width: 10%;                         /* Width of the button, 20% of form width */
+  margin-top: 10px;
+  border-radius: 5px;
+  /* border: 1px solid black; */
+}
+.success-popup .btn-close:hover {
+background-color: green
+}

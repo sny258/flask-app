@@ -49,8 +49,39 @@
         </div>
     </div>
 
-    <!-- JavaScript code to add greetings in header w.r.t time -->
+    <!-- Popup for Success Message -->
+    <!-- Flash messages for Errors -->
+    <!-- {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div id="LoginMsgPopup" class="login-message-popup">
+          <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+          <button type="button" class="btn-close" onclick="closeLoginMsgPopup()">Retry</button>
+        </div>
+      {% endif %}
+    {% endwith %} -->
+      
+    <!-- JavaScript code -->
     <script>
+        
+        // //JS code to close the flash message popup
+        // // Show the flash message popup if there are flash messages
+        // window.onload = function() {
+        //     var LoginMsgPopup = document.getElementById("LoginMsgPopup");
+        //     if (LoginMsgPopup) {
+        //         LoginMsgPopup.style.display = "block";
+        //     }
+        // }
+        // // Close the flash message popup
+        // function closeLoginMsgPopup() {
+        //     document.getElementById('LoginMsgPopup').style.display = 'none';
+        //     window.location.href = "/login";
+        // }
+        
+        // JavaScript code to add greetings in header w.r.t time
         var today = new Date();
         var hour = today.getHours();
         var greeting;
@@ -62,7 +93,6 @@
             greeting = "Good Evening";
         }
         document.querySelector('h1').textContent = greeting + ", Let's get you onboarded 😊 !!!";
-
     </script>   
      
 </body>
