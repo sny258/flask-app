@@ -9,7 +9,7 @@ def init_sqlite_db():
     conn = sqlite3.connect('database.db')
     print("Opened database successfully")
     
-    # Create a cursor using conne for executing SQL queries 
+    # Create a cursor using conn for executing SQL queries 
     cur = conn.cursor()
     # Check if users table exists
     cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
@@ -17,7 +17,8 @@ def init_sqlite_db():
         print("users table already exists")
     else:
         # Create users table
-        cur.execute('CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT)')
+        #cur.execute('CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT)')
+        cur.execute('CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT, first_name TEXT, last_name TEXT, email TEXT, security_question TEXT, security_answer TEXT);')
         print("users table created successfully")
     # Check if bookings table exists
     cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='bookings'")
@@ -69,8 +70,13 @@ def login():
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
         username = request.form['username']
         password = request.form['password']
+        security_question = request.form['security_question']
+        security_answer = request.form['security_answer']
         # Connect to DB and create a cursor
         with sqlite3.connect('database.db') as conn:
             cur = conn.cursor()
@@ -79,14 +85,17 @@ def signup():
              # Check if username exists in DB, If NO then add in DB and redirect to welcome page
              # Otherwise username already exists.
             if user:
-                flash('Username already exists. Please choose a different one 🧐')
+                #flash('Username already exists. Please choose a different one 🧐')
+                return jsonify(success=False, error="Username already exists."), 400
             else:
-                cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                #cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                cur.execute("INSERT INTO users (username, password, first_name, last_name, email, security_question, security_answer) VALUES (?, ?, ?, ?, ?, ?, ?)", (username, password, first_name, last_name, email, security_question, security_answer))
                 conn.commit()
                 session['username'] = username
                 return redirect(url_for('welcome'))
     # Redirect to login page in case of GET request
-    return redirect(url_for('login'))
+    #return redirect(url_for('login'))
+    return render_template('signup.html')
 
 
 # Default method is GET in flask if nothing is mentioned
@@ -198,7 +207,27 @@ def cancel_booking():
     return jsonify({'status': 'success', 'message': 'Booking canceled successfully'})
 
 
+# can you create a route for resetting the password
+@app.route('/reset_password', methods=['POST'])
+def reset_password():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        security_question = request.form['security_question']
+        security_answer = request.form['security_answer']
+        new_password = request.form['new_password']
+        with sqlite3.connect('database.db') as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM users WHERE username=? AND email=? AND security_question=? AND security_answer=?", (username, email, security_question, security_answer))
+            user = cur.fetchone()
+            if user:
+                cur.execute("UPDATE users SET password=? WHERE username=?", (new_password, username))
+                conn.commit()
+                return jsonify(success=True), 200
+            else:
+                return jsonify(success=False, error="Invalid credentials"), 400
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-

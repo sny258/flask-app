@@ -9,6 +9,7 @@
 <body>
     <div class="navbar">
         <!-- Logo -->
+        <!-- a with href inside makes the image clickable and route to login url-->
         <a href="{{ url_for('login') }}" class="logo-link">
             <img id="logo" src="static/logo11.png" alt="Logo">
         </a>
@@ -16,26 +17,40 @@
         <h1>Let's get you onboarded 😊 !!!</h1>
     </div>
     <div class="login-content">
-        <!-- This is test div, to test it iteams in main div can stack multiple divs-->
-        <!-- <div class="test">
-            <h2>Test</h2>
+        <!-- This is test div, to test if items in main div can stack multiple divs-->
+        <!-- <div class="test" style="display: flex; margin-right: 20px; flex-grow: 0; flex-direction: column; border: 1px solid black;">
+            <h2 style="align-self: center;">Welcome to Takshi's Hustle</h2>
+            <div style="display: flex; justify-content: center;">
+              <a href="{{ url_for('login') }}">Know About Us</a>
+            </div>
+        </div> -->
+        <!-- <div class="test" style="margin-right: 20px;">
+            <h2>Test2</h2>
         </div> -->
         <!-- Logo and Header Container -->
         <div class="login-header-form-container">
             <h2>Login or Signup</h2>
             <!-- form for Login & Signup -->
             <form method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <br>
+                <!-- <label for="username">Username:</label> -->
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <!-- <label for="password">Password:</label> -->
+                <!-- <input type="password" id="password" name="password" placeholder="Password" required> -->
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">🧐</span>
+                </div>
                 <div class="button-container">
-                    <button type="submit" formaction="{{ url_for('login') }}">Login</button>
-                    <button type="submit" formaction="{{ url_for('signup') }}">Signup</button>
+                    <button type="submit" class="login-button" id="login-button" formaction="{{ url_for('login') }}">Login</button>
+                    <!-- link to open fogot password popup -->
+                    <a href="#" id="forgot-password-link" onclick="showResetPasswordPrompt()">forgot password ?</a>
+                    <!-- <button type="submit" formaction="{{ url_for('signup') }}">Signup</button> -->
                 </div>
             </form>
+            <!-- Signup button to ope signup page -->
+            <div class="signup-button-container" style="text-align: center;">
+                <button type="button" class="signup-button" id="signup-button" onclick="navigateToSignup()">Signup</button>
+            </div>
             <!-- Flash messages for Errors -->
             {% with messages = get_flashed_messages() %}
               {% if messages %}
@@ -64,9 +79,105 @@
       {% endif %}
     {% endwith %} -->
       
+    <!-- Password Reset Prompt Modal -->
+    <div id="reset-password-modal" class="modal">
+      <div id="modal-content" class="modal-content">
+          <!-- <span class="close-button" onclick="closeResetPasswordPrompt()">&times;</span> -->
+          <h2>Reset Password</h2>
+          <form id="reset-password-form">
+              <input type="text" id="reset_username" name="reset_username" placeholder="Username" required>
+              <br>
+              <input type="text" id="email" name="email" placeholder="Email" required>
+              <br>
+              <select id="security_question" name="security_question" required>
+                  <option value="" disabled selected>Select a security question</option>
+                  <option value="pet-name">What is the name of your first pet?</option>
+                  <option value="mother-maiden-name">What is your mother's maiden name?</option>
+                  <option value="first-school">What was the name of your first school?</option>
+              </select>
+              <br>
+              <input type="text" id="security_answer" name="security_answer" placeholder="Security Answer" required>
+              <br>
+              <input type="text" id="new_password" name="new_password" placeholder="New Passowrd" required>
+              <br>
+              <button type="button" onclick="resetPassword()">Reset Password</button>
+          </form>
+          <p id="reset-status"></p>
+          <button type="button" onclick="closeResetPasswordPrompt()">Close</button>
+      </div>
+    </div>
+
+    <!-- password reset success popup which will opne the login page-->
+    <div class="success-popup" id="successPopup">
+        <h1 id="successMessage"></h1>
+        <button type="button" class="btn-close" onclick="navigateToLogin()">Login -></button>
+    </div>
+
     <!-- JavaScript code -->
     <script>
         
+        //reset password JS logic
+        function showResetPasswordPrompt() {
+            var modal = document.getElementById("reset-password-modal");
+            modal.style.display = "block";
+        }
+        function closeResetPasswordPrompt() {
+            var modal = document.getElementById("reset-password-modal");
+            modal.style.display = "none";
+        }
+        function resetPassword() {
+            var username = document.getElementById("reset_username").value;
+            var email = document.getElementById("email").value;
+            var securityQuestion = document.getElementById("security_question").value;
+            var securityAnswer = document.getElementById("security_answer").value;
+            var newPassword = document.getElementById("new_password").value;
+
+            // Create a new FormData object
+            var formData = new FormData();
+            formData.append('username', username);
+            formData.append('email', email);
+            formData.append('security_question', securityQuestion);
+            formData.append('security_answer', securityAnswer);
+            formData.append('new_password', newPassword);
+
+            fetch('/reset_password', {  // replace '/reset_password' with your actual submission URL
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+              if (response.ok) {
+                    // document.getElementById("reset-status").textContent = "Password reset successful!";
+                    // // Optionally, add a login button to redirect after resetting password
+                    // var loginButton = document.createElement("button");
+                    // loginButton.textContent = "Login Page";
+                    // loginButton.onclick = function() {
+                    //     window.location.href = "{{ url_for('login') }}";
+                    // };
+                    // document.getElementById("reset-password-form").appendChild(loginButton);
+
+                    // to open popup page for succesful password reset
+                    document.getElementById("successMessage").textContent = 'Password reset successful 😎';
+                    var button = document.querySelector("#successPopup .btn-close");
+                    button.innerText = 'Login ->';
+                    document.getElementById("successPopup").style.display = "block";
+                    button.onclick = function() { navigateToLogin(); };
+                        
+                } else {
+                    // Display error message if details don't match
+                    //document.getElementById("reset-status").textContent = "Invalid credentials. Please try again.";
+
+                    // to open popup page for succesful password reset
+                    document.getElementById("successMessage").textContent = 'Invalid details, Please try again 🥱';
+                    var button = document.querySelector("#successPopup .btn-close");
+                    button.innerText = 'Retry';
+                    document.getElementById("successPopup").style.display = "block";
+                    button.onclick = function() { document.getElementById("successPopup").style.display = "none"; showResetPasswordPrompt(); };
+          
+                }
+            }).catch(function(error) {
+                console.error('Error:', error);
+            });
+        }
+
         // //JS code to close the flash message popup
         // // Show the flash message popup if there are flash messages
         // window.onload = function() {
@@ -81,6 +192,15 @@
         //     window.location.href = "/login";
         // }
         
+        // JS code to open the signup page when clicked on the signup button
+        function navigateToSignup() {
+            window.location.href = "{{ url_for('signup') }}";
+        }
+         // JS code to open the login page when clicked on the login button
+        function navigateToLogin() {
+            window.location.href = "{{ url_for('login') }}";
+        }
+
         // JavaScript code to add greetings in header w.r.t time
         var today = new Date();
         var hour = today.getHours();
@@ -93,6 +213,13 @@
             greeting = "Good Evening";
         }
         document.querySelector('h1').textContent = greeting + ", Let's get you onboarded 😊 !!!";
+
+        // JS function to toggle password visibility
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+        }  
     </script>   
      
 </body>

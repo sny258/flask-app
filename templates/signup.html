@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="static/signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="navbar">
+            <!-- Logo -->
+            <!-- a with href inside makes the image clickable and route to login url-->
+            <a href="{{ url_for('login') }}" class="logo-link">
+                <img id="logo" src="static/logo11.png" alt="Logo">
+            </a>
+        </div>
+        <div class="signup-box">
+            <h2>Signup</h2>
+            <form method="post" onsubmit="signUp()"> 
+            <!-- <form action="{{ url_for('signup') }}" method="post">  -->
+            <!-- <form action="/signup" method="post">  -->
+                <div class="form-row-items">
+                    <div class="form-row">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="form-group-items" >
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <!-- passowrd box will have a button to make password visible -->
+                    <div class="form-group password-container">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">🧐</span>
+                    </div>
+                    <div class="form-group">
+                        <select type="text" id="security_question" name="security_question" required>
+                            <option value="" disabled selected>Select a security question</option>
+                            <option value="pet-name">What is the name of your first pet?</option>
+                            <option value="mother-maiden-name">What is your mother's maiden name?</option>
+                            <option value="first-school">What was the name of your first school?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="security_answer" name="security_answer" placeholder="Answer" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- signup success popup which will open the welcome page-->
+    <div class="success-popup" id="successPopup">
+        <h1 id="successMessage"></h1>
+        <button type="button" class="btn-close" onclick="navigateToLogin()">Login -></button>
+    </div>
+
+    <!-- JavaScript code -->
+    <script>
+        // JS code to open the signup page when clicked on the signup button
+            function navigateToSignup() {
+        window.location.href = "{{ url_for('signup') }}";
+        }
+         // JS code to open the welcome page
+        function navigateToLogin() {
+            window.location.href = "{{ url_for('login') }}";
+        }
+        // JS function which will execute the signup route and open prompt accordingly
+        function signUp() {
+            event.preventDefault(); // Prevent the default form submission
+            // get the form data
+            var firstName = document.getElementById("first_name").value;
+            var lastName = document.getElementById("last_name").value;
+            var email = document.getElementById("email").value;
+            var userName = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var securityQuestion = document.getElementById("security_question").value;
+            var securityAnswer = document.getElementById("security_answer").value;
+            // Create a new FormData object
+            var formData = new FormData();
+            formData.append('first_name', firstName)
+            formData.append('last_name', lastName)
+            formData.append('email', email);
+            formData.append('username', userName);
+            formData.append('password', password);
+            formData.append('security_question', securityQuestion);
+            formData.append('security_answer', securityAnswer);
+            // execute the route via AJAX api
+            fetch('/signup', {
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+              if (response.ok) {
+                    // to open popup page for succesful signup and redirect to login page
+                    document.getElementById("successMessage").textContent = 'You are Onboarded 🙂';
+                    var button = document.querySelector("#successPopup .btn-close");
+                    button.innerText = 'Login ->';
+                    document.getElementById("successPopup").style.display = "block";
+                    button.onclick = function() { navigateToLogin(); };   
+                } else {
+                    // to open popup page for unsuccesful signup 
+                    document.getElementById("successMessage").textContent = 'Username already exists. Please choose a different one 🧐';
+                    var button = document.querySelector("#successPopup .btn-close");
+                    button.innerText = 'Retry';
+                    document.getElementById("successPopup").style.display = "block";
+                    button.onclick = function() { document.getElementById("successPopup").style.display = "none";};
+                }
+            }).catch(function(error) {
+                console.error('Error:', error);
+            });
+        }
+        // JS function to toggle password visibility
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+        }        
+    </script>   
+
+</body>
+</html>

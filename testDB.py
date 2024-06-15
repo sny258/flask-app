@@ -41,3 +41,21 @@ def access_db():
 
 if __name__ == '__main__':
     access_db()
+
+
+## Access sqlite3 DB from terminal
+#-----------------------------------
+
+#sudo apt install sqlite3
+
+#sqlite3 database.db
+
+#.tables
+
+#SELECT * FROM users;
+
+#DELETE from users WHERE username='ccc';
+
+#DROP TABLE IF EXISTS bookings;
+
+#.exit

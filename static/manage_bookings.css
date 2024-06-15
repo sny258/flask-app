@@ -62,19 +62,22 @@
   background-color: lightblue;           /* Background color for dropdown button a's upon hovering */
 }
 /* Most Important styling for dropdown button */
-.dropdown:hover .dropdown-content {         /* Show the dropdown content upon hovering */
-  display: block;
+.dropdown:hover .dropdown-content {
+  /*display: block;                           /* Show the dropdown content upon hovering */
 }
+
 
 /* Contact Us styling */
 .contact-us-dropdown-content {
-  display: none;                          /* Hide the dropdown content */
-  position: absolute;                     /* dropdown button won't change position upon hover */
+  display: none;                          /* Hide the contact us dropdown content */
+  position: absolute;                     /* contact us button won't change position upon hover */
   background-color: lightcyan;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   left: -210px;                         /* Position of Contact Us dropdown content */
   border-radius: 5px; 
+  z-index: 11;                          /* to appear on top of cancle button */
 }
+/* Most Important styling for contanct us dropdown button */
 .contact-us-dropdown:hover .contact-us-dropdown-content {
   display: block;                       /* Show the Contact Us content upon hovering */
 }
@@ -100,7 +103,7 @@ h2 {
     border: 1px solid black;
 }
 table {
-    width: 750px;
+    width: 850px;
     /* display: flex; */                      /* It is making table to shrink when no data */
     align-items: center;                      /* Align items at center */
     background-color: white;
@@ -145,6 +148,7 @@ th {
     border: none;
     border-radius: 5px;
     opacity: 0.8;
+    z-index: 10;                      /* to appear on below contact us info */
   }
 .cancle-button:hover {
   background-color: red;

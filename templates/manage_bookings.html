@@ -17,8 +17,10 @@
         <!-- Header -->
         <h1>Manage your bookings</h1>
         <div class="dropdown">
-            <button class="dropbtn">☰</button>
-            <div class="dropdown-content">
+            <!-- <button class="dropbtn">☰</button> -->
+            <button class="dropbtn" onclick="openDropdownButtonContent()">☰</button>
+            <div id="dropdown-content" class="dropdown-content">
+                <a>{{ username }}</a>
                 <a href="{{ url_for('welcome') }}">Welcome Page</a>
                 <a href="{{ url_for('login') }}">Logout</a>
                 <div class="contact-us-dropdown">
@@ -97,11 +99,30 @@
 
     <!-- JavaScript code -->
     <script>
+        // This functionality will open the dropdown content upon clicking on dropdown button, before it was using hover functionalilty. to diable that commented the display setting of '.dropdown:hover .dropdown-content' in css file
+        // Show & Hide the dropdown content on clicking dropdown button
+        function openDropdownButtonContent() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        }
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdownContent = document.getElementById("dropdown-content");
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                }
+            }
+        }
+
         // JavaScript code to open and close the form on clicking cancle button with unique popupForm ID
         function openForm(formId) {
             document.getElementById(formId).style.display = "block";
         }
-
         function closeForm(formId) {
             document.getElementById(formId).style.display = "none";
         }
