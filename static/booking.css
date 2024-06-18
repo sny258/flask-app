@@ -93,74 +93,80 @@
 
  
 
-/* styling for login form container*/
+/* Styling for login form container */
 .booking-form-container {
   display: flex;
-  flex-direction: column;                 /* Stack items vertically */
-  align-items: center;                    /* Align items at centre with compact width, it can be increased in the items */
-  flex-grow: 1;                           /* Allow the container to take up the remaining space */
+  flex-direction: column;           /* Stack items vertically */
+  align-items: center;              /* Align items at the center */
+  flex-grow: 1;                     /* Allow the container to take up the remaining space */
   background-color: white;
   color: black;
-  padding: 10px;                          /* Add padding for better spacing */
+  padding: 10px;                    /* Add padding for better spacing */
   margin-top: 5px;
-  border: 1px solid black;              /* Add border around the form */
+  border: 1px solid black;        /* Add border around the form */
 }
-/* styling for form */
+/* Styling for form */
 form {
-    text-align: left;                     /* Align the form's contnent to the left */
-    margin: auto;
-    /*margin-left: 425px;                     /* to move the form a bit left */
-    /*width: 25%;                             /* Set the width of the form */
-    padding: 10px;                          /* Add padding inside the form */
-    border: 1px solid black;              /* Add border around the form */
-    /*background-color: lightgray;          /* Add background color to the form */
+  padding: 25px 15px 15px 15px;         /* Add padding inside the form, Top Right Bottom Left*/
+  border: 1px solid black;            /* Add border around the form */
+  margin: 10px;                         /* Add margin around the form */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  width: 100%;
 }
+/* Styling for form groups */
+.form-group {
+  display: flex;                      /* Use flexbox for label-input pairs */
+  justify-content: center;            /* Align items vertically in the center */
+  margin-bottom: 10px;                /* Add space between form groups */
+}
+/* Styling for labels */
 label {
-    color: black;                         /* form label's color */
-    font-size: 110%;
+  /*flex: 1 ;                           /* Fixed width for labels */
+  color: black;                     /* Form label's color */
+  font-size: 100%;
+  margin-right: 10px;                 /* Space between label and input box*/
+  width: 32px;                        /* to fix the width of the label, otherwise they won't be alligned vertically and take space upto their size */
+  display: flex;
+  justify-content: flex-end;          /* Center content horizontally at right side of box */
+  align-items: center;                /* Center content vertically */
+  /* border: 1px solid black; */
 }
-
+/* Styling for input elements */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-select[type="text"],
-input[type="date"] {
-  width: 200px;
+input[type="date"],
+select {
+  /*flex: 1;                        /* Input fields take up remaining space */
+  width: 200px;                     /* Set the width of the input box */
   padding: 5px;
-  margin-bottom: 5px;                /* Add space between the input boxes */
-  border-radius: 5px;                /* to make the input box rounded */
+  border-radius: 5px;               /* Make the input box rounded */
   border: 1px solid black;
+  box-sizing: border-box;           /* Ensure padding and border are included in the element's total width and height */
 }
-select[type="text"] {                  /*  moving Trip box right side */
-    margin-left: 15px;
-}
-input[type="date"] {                   /*  moving Date box right side */
-    margin-left: 10px;
-}
-/* Remove default focus styles, which changes the box's border colour */
+/* input[id="name"] {margin-top: 10px;} */
+/* Remove default focus styles */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
-select[type="text"]:focus,
-input[type="date"]:focus {
-    outline: none;
-    box-shadow: none;
+input[type="date"]:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
 }
+
 
 /* styling for Login & Singup buttons */
 .button-container {
-  display: flex;                      /* Display the button container as a flex container */
-  flex-direction: column;             /* Stack buttons vertically */
-  align-items: center;
-  gap: 10px;                          /* Add space between the buttons */
-  margin-top: 20px;
   border: 1px solid black;
-  width: fit-content;                 /* Set the width of the button container */
-  margin: 0 auto;                     /* Center horizontally */
-  margin-top: 10px;
+  width: 50px;                 /* Set the width of the button container */
+  margin: 0 auto;                     /* Center horizontally, 0 is for top & bottom and auto is for left & right margin */
+  margin-top: 20px;
 }
 button[type="submit"] {
-  /*width: 100px;                        /* Set the width of the button */
+  width: 100%;                        /* Set the width of the button */
   padding: 5px;
   border: 1px solid #ccc;              /* Add border to the button */
   border-radius: 5px;                    /* Add border radius to the button */

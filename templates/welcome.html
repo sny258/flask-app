@@ -21,8 +21,9 @@
         <div class="dropdown">
             <button class="dropbtn">☰</button>
             <div class="dropdown-content">
-                <a href="{{ url_for('login') }}">Logout</a>
+                <a>{{ username }}</a>
                 <a href="{{ url_for('manage_booking') }}">My Bookings</a>
+                <a href="{{ url_for('login') }}">Logout</a>
                 <div class="contact-us-dropdown">
                     <a href="#" class="contact-us-link">Contact Us</a>
                     <div class="contact-us-dropdown-content">

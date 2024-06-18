@@ -72,7 +72,7 @@
                             <form action="{{ url_for('cancel_booking') }}" method="post" class="form-container">
                               <h1>Are you sure 🤔 ?</h1>                          
                               <input type="hidden" name="booking_id" value="{{ booking.booking_id }}">
-                              <button type="submit" class="btn">Yes</button>
+                              <button type="submit" class="btn" onclick="cancleBooking('{{ booking.booking_id }}')">Yes</button>
                               <button type="button" class="btn-no" onclick="closeForm('popupForm_{{ booking.booking_id }}')">No</button>
                             </form>
                         </div>
@@ -123,6 +123,14 @@
         function openForm(formId) {
             document.getElementById(formId).style.display = "block";
         }
+        // get the booking id of the clicked cancel button i.e of particular row
+        // document.querySelectorAll('.cancle-button').forEach(function(button) {
+        //     button.addEventListener('click', function() {
+        //         var bookingId = this.getAttribute('data-booking-id');
+        //         openForm('popupForm_' + bookingId);
+        //     });
+        // });
+        // JS code to close the cancle form
         function closeForm(formId) {
             document.getElementById(formId).style.display = "none";
         }
@@ -138,19 +146,13 @@
         // Sending using JS although we can use form submit as well but it will redirect to the '/manage_booking' page. We want to avoid that and open a new success message popup.
         // When success message popup is closed, the page will be redirected to the '/manage_booking' page and trip data will be refreshed as well.
         
-        // get the booking id of the clicked cancel button i.e of particular row
-        document.querySelectorAll('.cancle-button').forEach(function(button) {
-            button.addEventListener('click', function() {
-                var bookingId = this.getAttribute('data-booking-id');
-                openForm('popupForm_' + bookingId);
-            });
-        });
         // Using submit event listener to each '.form-container' element
         // Inside the submit event listener, we're getting the booking_id value from the input field within the same form container, and using it to send the POST request to the server.
-        document.querySelectorAll('.form-container').forEach(function(form) {
-            form.addEventListener('submit', function(event) {
+        function cancleBooking(bookingId) {
+        // document.querySelectorAll('.form-container').forEach(function(form) {
+        //     form.addEventListener('submit', function(event) {
                 event.preventDefault();
-                var bookingId = this.querySelector('input[name="booking_id"]').value;
+                // var bookingId = this.querySelector('input[name="booking_id"]').value;
                 var formData = new FormData();
                 formData.append('booking_id', bookingId);
             
@@ -168,9 +170,9 @@
                 }).catch(function(error) {
                     console.error('Error:', error);
                 });
-            });
-        });
-
+        //     });
+        // });
+        }
     </script>
 
 </body>

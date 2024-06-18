@@ -111,6 +111,8 @@ table {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 th, td {
     border: 1px solid #ddd;
@@ -249,10 +251,9 @@ th {
     padding: 8px 12px;
     border: none;
     cursor: pointer;
-    width: 20%;                         /* Width of the button, 20% of form width */
+    width: 20%;
     margin-top: 10px;
     border-radius: 5px;
-    /* border: 1px solid black; */
   }
 .success-popup .btn-close:hover {
   background-color: green
