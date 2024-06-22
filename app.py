@@ -112,7 +112,8 @@ def welcome():
         return redirect(url_for('login'))
 
 # Route to log user put of session
-@app.route('/logout', methods=['POST'])
+# It will only accept GET requests, and clear the session of user i.e remove cookies from browser
+@app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
