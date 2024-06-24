@@ -62,13 +62,13 @@
     <!-- signup success popup which will open the welcome page-->
     <div class="success-popup" id="successPopup">
         <h1 id="successMessage"></h1>
-        <button type="button" class="btn-close" onclick="navigateToLogin()">Login -></button>
+        <button type="button" class="btn-close" id="btn-close" onclick="navigateToLogin()">Login -></button>
     </div>
 
     <!-- JavaScript code -->
     <script>
         // JS code to open the signup page when clicked on the signup button
-            function navigateToSignup() {
+        function navigateToSignup() {
         window.location.href = "{{ url_for('signup') }}";
         }
          // JS code to open the welcome page
@@ -103,17 +103,19 @@
               if (response.ok) {
                     // to open popup page for succesful signup and redirect to login page
                     document.getElementById("successMessage").textContent = 'You are Onboarded 🙂';
-                    var button = document.querySelector("#successPopup .btn-close");
+                    var button = document.getElementById("btn-close");
                     button.innerText = 'Login ->';
                     document.getElementById("successPopup").style.display = "block";
                     button.onclick = function() { navigateToLogin(); };   
                 } else {
                     // to open popup page for unsuccesful signup 
                     document.getElementById("successMessage").textContent = 'Username already exists. Please choose a different one 😬';
-                    var button = document.querySelector("#successPopup .btn-close");
+                    var button = document.getElementById("btn-close");
                     button.innerText = 'Retry';
                     document.getElementById("successPopup").style.display = "block";
-                    button.onclick = function() { document.getElementById("successPopup").style.display = "none";};
+                    button.onclick = function() { 
+                        document.getElementById("successPopup").style.display = "none";
+                    };
                 }
             }).catch(function(error) {
                 console.error('Error:', error);

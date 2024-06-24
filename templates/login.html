@@ -110,7 +110,7 @@
     <!-- password reset success popup which will opne the login page-->
     <div class="success-popup" id="successPopup">
         <h1 id="successMessage"></h1>
-        <button type="button" class="btn-close" onclick="navigateToLogin()">Login -></button>
+        <button type="button" class="btn-close" id="btn-close" onclick="navigateToLogin()">Login -></button>
     </div>
 
     <!-- JavaScript code -->
@@ -123,6 +123,9 @@
         }
         function closeResetPasswordPrompt() {
             var modal = document.getElementById("reset-password-modal");
+            // Clear the form fields
+            document.getElementById("reset-password-form").reset();
+            // Close the modal
             modal.style.display = "none";
         }
         function resetPassword() {
@@ -156,7 +159,7 @@
 
                     // to open popup page for succesful password reset
                     document.getElementById("successMessage").textContent = 'Password reset successful 😎';
-                    var button = document.querySelector("#successPopup .btn-close");
+                    var button = document.getElementById("btn-close");
                     button.innerText = 'Login ->';
                     document.getElementById("successPopup").style.display = "block";
                     button.onclick = function() { navigateToLogin(); };
@@ -167,11 +170,12 @@
 
                     // to open popup page for succesful password reset
                     document.getElementById("successMessage").textContent = 'Invalid details, Please try again 🥱';
-                    var button = document.querySelector("#successPopup .btn-close");
+                    var button = document.getElementById("btn-close");
                     button.innerText = 'Retry';
                     document.getElementById("successPopup").style.display = "block";
-                    button.onclick = function() { document.getElementById("successPopup").style.display = "none"; showResetPasswordPrompt(); };
-          
+                    button.onclick = function() { 
+                        document.getElementById("successPopup").style.display = "none"; showResetPasswordPrompt(); 
+                    };
                 }
             }).catch(function(error) {
                 console.error('Error:', error);
