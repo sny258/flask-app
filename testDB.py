@@ -50,6 +50,9 @@ if __name__ == '__main__':
 
 #sqlite3 database.db
 
+#.headers on
+#.mode column
+    
 #.tables
 
 #SELECT * FROM users;
